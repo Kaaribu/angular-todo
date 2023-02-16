@@ -14,7 +14,7 @@ import {MatTableDataSource} from '@angular/material/table';
 export class AppComponent implements OnInit {
   title = 'angular-todo';
 
-  displayedColumns: string[] = ['taskName', 'category', 'date', 'priority', 'description'];
+  displayedColumns: string[] = ['taskName', 'category', 'date', 'priority', 'description', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -30,18 +30,51 @@ export class AppComponent implements OnInit {
   OpenDialog() {
     this.dialog.open(DialogComponent, {
       width: '30%',
+    }).afterClosed().subscribe(val => {
+      if (val == 'save') {
+        this.getAllTasks();
+      }
     });
   }
 
   getAllTasks() {
-    this.api.getTask().subscribe((res: any) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+    this.api.getTask().subscribe({next:(res) => {
+      this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    },
+    error: (err) => {
+      alert("Error while fetching tasks!");
+    }
+    })
+  }
+
+  editTask(row: any) {
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+      data: row
+    }).afterClosed().subscribe(val => {
+      if (val == 'update') {
+        this.getAllTasks();
+      }
+    });
+  }
+
+  deleteTask(id: number) {
+    this.api.deleteTask(id).subscribe((res: any) => {
+        alert("Error while deleting task!");
+        this.getAllTasks();
       },
       error => {
         alert("Something went wrong");
       })
+  }
+
+  editTaskStatus(row: any) {
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+      data: {row}
+    })
   }
 
   applyFilter(event: Event) {
