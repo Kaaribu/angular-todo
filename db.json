@@ -1,7 +1,49 @@
 {
   "taskList": [
+    {
+      "listName": "Go to the mall",
+      "category": "Personal",
+      "priority": 1,
+      "date": "2023-02-15T22:00:00.000Z",
+      "id": 1
+    },
+    {
+      "listName": "Study TypeScript",
+      "category": "Work",
+      "priority": 1,
+      "date": "2023-02-19T22:00:00.000Z",
+      "id": 2
+    },
+    {
+      "listName": "Wash dishes",
+      "category": "Personal",
+      "priority": 1,
+      "date": "2023-02-15T22:00:00.000Z",
+      "id": 3
+    },
+    {
+      "taskName": "Buy Paper",
+      "category": "Work",
+      "priority": "Urgent",
+      "date": "2023-02-16T22:00:00.000Z",
+      "id": 4
+    },
+    {
+      "taskName": "Study for exams",
+      "category": "Other",
+      "priority": "Moderate",
+      "date": "2023-02-19T22:00:00.000Z",
+      "id": 5
+    },
+    {
+      "taskName": "Exams",
+      "category": "School",
+      "priority": "Normal",
+      "description": "Start exam prepararations",
+      "date": "2023-02-28T22:00:00.000Z",
+      "id": 6
+    }
   ],
-
   "comments": [
     {
       "id": 1,
