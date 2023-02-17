@@ -15,6 +15,70 @@
       "description": "Hit the gym",
       "date": "2023-02-17T22:00:00.000Z",
       "id": 2
+    },
+    {
+      "taskName": "Buy Food",
+      "category": "Other",
+      "priority": "Normal",
+      "description": "Fish & Chips",
+      "date": "2023-02-16T22:00:00.000Z",
+      "id": 3
+    },
+    {
+      "taskName": "Buy Food",
+      "category": "Work",
+      "priority": "Normal",
+      "description": "Go to the mall",
+      "date": "2023-02-16T22:00:00.000Z",
+      "id": 4
+    },
+    {
+      "taskName": "Buy Food",
+      "category": "Work",
+      "priority": "Urgent",
+      "description": "Go to the mall",
+      "date": "2023-02-16T22:00:00.000Z",
+      "id": 5
+    },
+    {
+      "taskName": "Buy Food",
+      "category": "Work",
+      "priority": "Normal",
+      "description": "Go to the mall",
+      "date": "2023-02-16T22:00:00.000Z",
+      "id": 6
+    },
+    {
+      "taskName": "Buy Food",
+      "category": "Work",
+      "priority": "Normal",
+      "description": "Go to the mall",
+      "date": "2023-02-16T22:00:00.000Z",
+      "id": 7
+    },
+    {
+      "taskName": "Buy Food",
+      "category": "Work",
+      "priority": "Urgent",
+      "description": "Fish & Chips",
+      "date": "2023-02-27T22:00:00.000Z",
+      "id": 8
+    },
+    {
+      "taskName": "Repair PC and keyboard",
+      "category": "Work",
+      "priority": "Urgent",
+      "description": "Perform desktop repairs for all the workstations.",
+      "date": "2023-02-17T22:00:00.000Z",
+      "id": 9
+    },
+    {
+      "taskName": "Sell Food",
+      "category": "School",
+      "priority": "Normal",
+      "description": "xwscxw",
+      "date": "2023-02-09T22:00:00.000Z",
+      "id": 10
     }
   ],
   "comments": [

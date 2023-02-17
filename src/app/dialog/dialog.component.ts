@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../services/api.service";
 import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-dialog',
@@ -12,9 +13,10 @@ export class DialogComponent implements OnInit {
 
   priorityList: string[] = ["Urgent", "Moderate", "Normal"];
   todoForm !: FormGroup;
+  actionBtn: string = "Save";
 
   constructor(private formBuilder: FormBuilder, private api: ApiService,
-              private dialogRef: MatDialogRef<DialogComponent, any>,
+              private dialogRef: MatDialogRef<DialogComponent>,
               @Inject(MAT_DIALOG_DATA) public editData: any) {
   }
 
@@ -28,6 +30,7 @@ export class DialogComponent implements OnInit {
     });
 
     if(this.editData) {
+      this.actionBtn = "Update";
       this.todoForm.controls['taskName'].setValue(this.editData.taskName);
       this.todoForm.controls['category'].setValue(this.editData.category);
       this.todoForm.controls['priority'].setValue(this.editData.priority);
@@ -37,19 +40,42 @@ export class DialogComponent implements OnInit {
   }
 
   addTask() {
-    if(this.todoForm.valid) {
-      this.api.postTask(this.todoForm.value).subscribe({next:(res) => {
-        alert("Task added successfully!");
-        this.todoForm.reset();
-        this.dialogRef.close('save');
-      },
-      error: () => {
-        alert("Error while adding task!");
+    if(!this.editData) {
+      if(this.todoForm.valid) {
+        this.api.postTask(this.todoForm.value).subscribe({
+          next: (res) => {
+            this.dialogRef.close('save');
+          },
+          error: (err) => {
+            alert("Error while adding task!");
+          }
+        });
       }
-      })
     }
+    else {
+      this.updateTask()
+  }
+}
+
+  updateTask() {
+    if(this.editData) {
+      if (this.todoForm.valid) {
+        this.api.putTask(this.todoForm.value, this.editData.id).subscribe({
+          next: (res) => {
+            this.dialogRef.close('update');
+          },
+          error: (err) => {
+            alert("Error while updating task!");
+          }
+        });
+      }
     }
   }
+}
 
-       
+
+
+
+
+
 

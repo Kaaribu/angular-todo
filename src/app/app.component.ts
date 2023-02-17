@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     this.dialog.open(DialogComponent, {
       width: '30%',
     }).afterClosed().subscribe(val => {
-      if (val == 'save') {
+      if (val === 'save') {
         this.getAllTasks();
       }
     });
@@ -54,26 +54,20 @@ export class AppComponent implements OnInit {
       width: '30%',
       data: row
     }).afterClosed().subscribe(val => {
-      if (val == 'update') {
+      if (val === 'update') {
         this.getAllTasks();
       }
     });
   }
 
   deleteTask(id: number) {
-    this.api.deleteTask(id).subscribe((res: any) => {
-        alert("Error while deleting task!");
-        this.getAllTasks();
-      },
-      error => {
-        alert("Something went wrong");
-      })
-  }
-
-  editTaskStatus(row: any) {
-    this.dialog.open(DialogComponent, {
-      width: '30%',
-      data: {row}
+    this.api.deleteTask(id).subscribe({next:(res) => {
+      alert("Task deleted successfully!");
+      this.getAllTasks();
+    },
+    error: () => {
+      alert("Error while deleting task!");
+    }
     })
   }
 
