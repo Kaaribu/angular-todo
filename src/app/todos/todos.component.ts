@@ -13,14 +13,12 @@ import {DialogComponent} from "../dialog/dialog.component";
 })
 export class TodosComponent implements OnInit {
 
-  displayedColumns: string[] = ['check', 'taskName', 'category', 'date', 'priority', 'description', 'action'];
+  displayedColumns: string[] = ['taskName', 'category', 'date', 'priority', 'description', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input('isEditing') isEditingProps: boolean = true;
-  todoProps: any;
-  private todosService: any;
 
   constructor(private dialog: MatDialog, private api: ApiService) {
   }
@@ -40,7 +38,8 @@ export class TodosComponent implements OnInit {
   }
 
   getAllTasks() {
-    this.api.getTask().subscribe({next:(res) => {
+    this.api.getTask().subscribe({
+      next: (res) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -63,7 +62,8 @@ export class TodosComponent implements OnInit {
   }
 
   deleteTask(id: number) {
-    this.api.deleteTask(id).subscribe({next:(res) => {
+    this.api.deleteTask(id).subscribe({
+      next: (res) => {
         alert("Task deleted successfully!");
         this.getAllTasks();
       },
@@ -83,7 +83,4 @@ export class TodosComponent implements OnInit {
     }
   }
 
-  toggleTodo() {
-    this.todosService.toggleTodo(this.todoProps.id);
-  }
 }

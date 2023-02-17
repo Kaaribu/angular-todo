@@ -23,19 +23,6 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
 
-        <li [ngClass]="{ editing:isEditingProps }">
-          <div class="view">
-            <input class="toggle" type="checkbox" [checked]="todoProps.isCompleted"
-                   (change)="toggleTodo()"/>
-            <label (dblclick)="activateEdit()">{{todoProps.text}}</label>
-            <button class="destroy" (click)="removeTodo()"></button>
-          </div>
-          <ng-container *ngIf="isEditingProps">
-            <input class="edit" #textInput [value]="editText" (keyup)="changeText($event)"
-                   (keyup.enter)="changeTodo"/>
-          </ng-container>
-        </li>
-
         <!-- Name Column -->
         <ng-container matColumnDef="taskName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>

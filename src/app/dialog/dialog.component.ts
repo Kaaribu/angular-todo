@@ -22,7 +22,6 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.todoForm = this.formBuilder.group({
-      check: [false],
       taskName: ['', Validators.required],
       category: ['', Validators.required],
       priority: ['', Validators.required],
@@ -32,7 +31,6 @@ export class DialogComponent implements OnInit {
 
     if(this.editData) {
       this.actionBtn = "Update";
-      this.todoForm.controls['check']
       this.todoForm.controls['taskName'].setValue(this.editData.taskName);
       this.todoForm.controls['category'].setValue(this.editData.category);
       this.todoForm.controls['priority'].setValue(this.editData.priority);

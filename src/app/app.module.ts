@@ -22,6 +22,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from '@angular/material/sort';
 import { TodosComponent } from './todos/todos.component';
 import { ServicesComponent } from './services/services.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ServicesComponent } from './services/services.component';
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
