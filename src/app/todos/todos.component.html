@@ -2,9 +2,10 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>supervised_user_circle</mat-icon>
   </button>
-  <span>To-dos</span>
+  <span>TO-DOs</span>
   <span class="example-spacer"></span>
   <button mat-fab extended color="warn" (click)="OpenDialog()">
+    <mat-icon>add</mat-icon>
     New Task
   </button>
   <button style="margin-left: 10px" mat-fab extended color="warn">
@@ -16,25 +17,38 @@
   <div style="margin-top: 10px;">
     <mat-form-field>
       <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
     </mat-form-field>
 
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
 
-        <!-- ID Column -->
+        <li [ngClass]="{ editing:isEditingProps }">
+          <div class="view">
+            <input class="toggle" type="checkbox" [checked]="todoProps.isCompleted"
+                   (change)="toggleTodo()"/>
+            <label (dblclick)="activateEdit()">{{todoProps.text}}</label>
+            <button class="destroy" (click)="removeTodo()"></button>
+          </div>
+          <ng-container *ngIf="isEditingProps">
+            <input class="edit" #textInput [value]="editText" (keyup)="changeText($event)"
+                   (keyup.enter)="changeTodo"/>
+          </ng-container>
+        </li>
+
+        <!-- Name Column -->
         <ng-container matColumnDef="taskName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
           <td mat-cell *matCellDef="let row"> {{row.taskName}} </td>
         </ng-container>
 
-        <!-- Progress Column -->
+        <!-- Category Column -->
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
           <td mat-cell *matCellDef="let row"> {{row.category}} </td>
         </ng-container>
 
-        <!-- Name Column -->
+        <!-- Priority Column -->
         <ng-container matColumnDef="priority">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
           <td mat-cell *matCellDef="let row"> {{row.priority}} </td>
@@ -46,7 +60,7 @@
           <td mat-cell *matCellDef="let row"> {{row.description}} </td>
         </ng-container>
 
-        <!-- Fruit Column -->
+        <!-- Date Column -->
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
           <td mat-cell *matCellDef="let row"> {{row.date | date}} </td>

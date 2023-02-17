@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
@@ -13,11 +13,14 @@ import {DialogComponent} from "../dialog/dialog.component";
 })
 export class TodosComponent implements OnInit {
 
-  displayedColumns: string[] = ['taskName', 'category', 'date', 'priority', 'description', 'action'];
+  displayedColumns: string[] = ['check', 'taskName', 'category', 'date', 'priority', 'description', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @Input('isEditing') isEditingProps: boolean = true;
+  todoProps: any;
+  private todosService: any;
 
   constructor(private dialog: MatDialog, private api: ApiService) {
   }
@@ -78,5 +81,9 @@ export class TodosComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  toggleTodo() {
+    this.todosService.toggleTodo(this.todoProps.id);
   }
 }
