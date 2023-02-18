@@ -23,13 +23,15 @@ import {MatSortModule} from '@angular/material/sort';
 import { TodosComponent } from './todos/todos.component';
 import { ServicesComponent } from './services/services.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { TranslateComponent } from './translate/translate.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
     TodosComponent,
-    ServicesComponent
+    ServicesComponent,
+    TranslateComponent
   ],
   imports: [
     BrowserModule,

@@ -64,7 +64,7 @@ export class TodosComponent implements OnInit {
   deleteTask(id: number) {
     this.api.deleteTask(id).subscribe({
       next: (res) => {
-        alert("Task deleted successfully!");
+        alert("Task completed");
         this.getAllTasks();
       },
       error: () => {
@@ -72,7 +72,6 @@ export class TodosComponent implements OnInit {
       }
     })
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -82,5 +81,4 @@ export class TodosComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }
