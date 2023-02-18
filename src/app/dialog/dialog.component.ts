@@ -2,7 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../services/api.service";
 import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
-import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-dialog',
@@ -29,7 +28,7 @@ export class DialogComponent implements OnInit {
       date: ['', Validators.required],
     });
 
-    if(this.editData) {
+    if (this.editData) {
       this.actionBtn = "Update";
       this.todoForm.controls['taskName'].setValue(this.editData.taskName);
       this.todoForm.controls['category'].setValue(this.editData.category);
@@ -40,38 +39,37 @@ export class DialogComponent implements OnInit {
   }
 
   addTask() {
-    if(!this.editData) {
-      if(this.todoForm.valid) {
+    if (!this.editData) {
+      if (this.todoForm.valid) {
         this.api.postTask(this.todoForm.value).subscribe({
           next: (res) => {
+            alert('Task added successfully')
             this.dialogRef.close('save');
           },
           error: (err) => {
             alert("Error while adding task!");
           }
-        });
+        })
       }
-    }
-    else {
-      this.updateTask()
-  }
-}
-
-  updateTask() {
-    if(this.editData) {
+    } else {
       if (this.todoForm.valid) {
         this.api.putTask(this.todoForm.value, this.editData.id).subscribe({
           next: (res) => {
+            alert('Task updated successfully')
             this.dialogRef.close('update');
           },
           error: (err) => {
-            alert("Error while updating task!");
+            alert('Error while updating task');
           }
-        });
+        })
       }
     }
   }
 }
+
+
+
+
 
 
 
