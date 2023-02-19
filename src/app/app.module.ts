@@ -16,7 +16,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from '@angular/material/sort';
@@ -24,7 +24,14 @@ import { TodosComponent } from './todos/todos.component';
 import { ServicesComponent } from './services/services.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { TranslateComponent } from './translate/translate.component';
-import { TranslateModule } from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 
 @NgModule({
   declarations: [
@@ -38,7 +45,16 @@ import { TranslateModule } from '@ngx-translate/core';
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatToolbarModule, MatIconModule,
     MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule, HttpClientModule,
-    MatTableModule, MatPaginatorModule, MatSortModule, MatCheckboxModule, TranslateModule
+    MatTableModule, MatPaginatorModule, MatSortModule, MatCheckboxModule, TranslateModule, HttpClientModule,
+    forRoot({
+      loader: {
+        provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    })
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
