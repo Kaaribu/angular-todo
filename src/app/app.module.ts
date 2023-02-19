@@ -24,6 +24,7 @@ import { TodosComponent } from './todos/todos.component';
 import { ServicesComponent } from './services/services.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { TranslateComponent } from './translate/translate.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -34,25 +35,10 @@ import { TranslateComponent } from './translate/translate.component';
     TranslateComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatRadioModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatCheckboxModule
+    BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatToolbarModule, MatIconModule,
+    MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
+    MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule, HttpClientModule,
+    MatTableModule, MatPaginatorModule, MatSortModule, MatCheckboxModule, TranslateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
