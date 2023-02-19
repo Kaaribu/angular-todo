@@ -1,21 +1,13 @@
 <h1 mat-dialog-title>Translate Text</h1>
-    <div mat-dialog-content>
-          <form [formGroup]="translateForm">
-            <mat-form-field appearance="outline">
-              <mat-label>Task Name</mat-label>
-              <input formControlName="taskName" matInput placeholder="Name"/>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Description</mat-label>
-              <textarea formControlName="description" matInput placeholder="Description"></textarea>
-            </mat-form-field>
-          </form>
-    </div>
+ <div class="container" align="center" style="padding-bottom: 30px">
+   <p style="color: white; font-size: medium">Choose language for translation:</p>
+   <button mat-fab extended color="accent" style="margin-right: 10px" (click)="useLanguage('de')">de</button>
+    <button mat-fab extended color="accent" (click)="useLanguage('en')">en</button>
+    <button mat-fab extended color="accent" style="margin-left: 10px" (click)="useLanguage('fr')">de</button>
+ </div>
+
   <div mat-dialog-actions [align]="'end'">
     <button mat-fab extended color="primary" mat-dialog-close="">Cancel</button>
-    <button mat-fab extended color="warn" mat-dialog-close="">Translate
-    <mat-icon>g_translate</mat-icon>
-    </button>
 </div>
 
 

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -11,7 +12,13 @@ export class TranslateComponent implements OnInit {
 
   translateForm !: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,) {
+  constructor(private formBuilder: FormBuilder,
+               private translate: TranslateService) {
+
+    translate.setDefaultLang('en');
+    translate.use('en');
+    translate.getBrowserLang();
+    translate.getBrowserCultureLang();
   }
 
   ngOnInit(): void {
@@ -19,5 +26,9 @@ export class TranslateComponent implements OnInit {
       taskName: ['', Validators.required],
       category: ['', Validators.required],
     });
+  }
+
+  useLanguage(language: string) : void {
+    this.translate.use(language);
   }
 }
