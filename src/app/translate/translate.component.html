@@ -1,1 +1,21 @@
-<p>translate works!</p>
+<h1 mat-dialog-title>Translate Text</h1>
+    <div mat-dialog-content>
+          <form [formGroup]="translateForm">
+            <mat-form-field appearance="outline">
+              <mat-label>Task Name</mat-label>
+              <input formControlName="taskName" matInput placeholder="Name"/>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea formControlName="description" matInput placeholder="Description"></textarea>
+            </mat-form-field>
+          </form>
+    </div>
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-fab extended color="warn" mat-dialog-close="">Cancel</button>
+    <button mat-fab extended color="primary" mat-dialog-close="">Translate
+    <mat-icon>g_translate</mat-icon>
+    </button>
+</div>
+
+

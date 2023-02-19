@@ -5,6 +5,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatDialog} from "@angular/material/dialog";
 import {ApiService} from "../services/api.service";
 import {DialogComponent} from "../dialog/dialog.component";
+import {TranslateComponent} from "../translate/translate.component";
 
 @Component({
   selector: 'app-todos',
@@ -34,6 +35,12 @@ export class TodosComponent implements OnInit {
       if (val === 'save') {
         this.getAllTasks();
       }
+    });
+  }
+
+  OpenTranslator() {
+    this.dialog.open(TranslateComponent, {
+      width: '30%',
     });
   }
 
