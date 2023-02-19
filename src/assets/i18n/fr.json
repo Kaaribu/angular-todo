@@ -1,4 +1,26 @@
 {
-	"todo.heading": "Traduction Todo-App",
-	"todo.text": "Ce tutoriel explique comment vous pouvez facilement traduire votre application Angular."
+	"todo.dialog.cat-val": "Travail",
+	"todo.dialog.cat-val2": "Personnel",
+	"todo.dialog.cat-val3": "École",
+	"todo.dialog.cat-val4": "Autre",
+	"todo.dialog.category-ph": "CATÉGORIE",
+	"todo.dialog.date-lbl": "Choisissez une date pour commencer la tâche",
+	"todo.dialog.desc-lbl": "La description",
+	"todo.dialog.lbl-add": "Ajouter une tâche",
+	"todo.dialog.lbl-category": "CATÉGORIE",
+	"todo.dialog.lbl-task-ph": "Nom",
+	"todo.dialog.lbl-taskname": "Nom de la tâche",
+	"todo.dialog.priority-lbl": "Priorité des tâches",
+	"todo.todos.actions": "Modifier | Complet",
+	"todo.todos.btn-add": "Nouvelle tâche",
+	"todo.todos.btn-translate": "Traduire",
+	"todo.todos.category": "CATÉGORIE",
+	"todo.todos.date": "Date",
+	"todo.todos.description": "La description",
+	"todo.todos.filter": "Filtre",
+	"todo.todos.name": "Nom",
+	"todo.todos.priority": "Priorité",
+	"todo.todos.span": "Tâches",
+	"todo.translate.cancel-btn": "Annuler",
+	"todo.translate.title": "Traduire le texte"
 }

@@ -1,6 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TranslateService} from "@ngx-translate/core";
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+
+{
+    let messageBoxContent = marker('messagebox.warning.text');
+}
 
 
 @Component({

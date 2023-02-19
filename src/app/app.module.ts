@@ -24,8 +24,9 @@ import { TodosComponent } from './todos/todos.component';
 import { ServicesComponent } from './services/services.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { TranslateComponent } from './translate/translate.component';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslateCompiler} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
 
 
 @NgModule({
@@ -48,6 +49,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
+             },
+
+            // compiler configuration
+            compiler: {
+                provide: TranslateCompiler,
+                useClass: TranslateMessageFormatCompiler
             }
         })
 

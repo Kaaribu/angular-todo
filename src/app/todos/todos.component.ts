@@ -7,6 +7,11 @@ import {ApiService} from "../services/api.service";
 import {DialogComponent} from "../dialog/dialog.component";
 import {TranslateComponent} from "../translate/translate.component";
 import {TranslateService} from "@ngx-translate/core";
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+
+{
+    let messageBoxContent = marker('messagebox.warning.text');
+}
 
 @Component({
   selector: 'app-todos',
@@ -24,6 +29,12 @@ export class TodosComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private api: ApiService,
               private translate: TranslateService) {
+    this.stateOptions = [
+      {'label': 'Hindi', value: 'hi'},
+      {'label': 'English', value: 'en'},
+      {'label': 'French', value: 'fr'},
+      {'label': 'German', value: 'de'},
+    ];
 
     translate.setDefaultLang('en');
     translate.use('en');
@@ -32,6 +43,13 @@ export class TodosComponent implements OnInit {
   ngOnInit(): void {
     this.getAllTasks();
   }
+
+  onLanguageChange(item: any) {
+    this.translate.use(item.value);
+  }
+
+  stateOptions: any[];
+  value1:string = 'en'
 
   OpenDialog() {
     this.dialog.open(DialogComponent, {
@@ -43,12 +61,11 @@ export class TodosComponent implements OnInit {
     });
   }
 
-  OpenTranslator() {
+   OpenTranslator() {
     this.dialog.open(TranslateComponent, {
       width: '30%',
     });
   }
-
   getAllTasks() {
     this.api.getTask().subscribe({
       next: (res) => {
