@@ -3,7 +3,7 @@
     {
       "taskName": "Repairs",
       "category": "Work",
-      "priority": "Normal",
+      "priority": "Urgent",
       "description": "Repair all workstations",
       "date": "2023-01-31T22:00:00.000Z",
       "id": 1
@@ -23,6 +23,14 @@
       "description": "Do double shoulder push-ups",
       "date": "2023-02-19T22:00:00.000Z",
       "id": 3
+    },
+    {
+      "taskName": "Go shopping",
+      "category": "Personal",
+      "priority": "Moderate",
+      "description": "Go on a shopping spree",
+      "date": "2023-03-03T22:00:00.000Z",
+      "id": 4
     }
   ],
   "comments": [

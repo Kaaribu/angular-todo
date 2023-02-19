@@ -11,7 +11,7 @@ export class TranslateComponent implements OnInit {
 
   translateForm !: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,) {
   }
 
   ngOnInit(): void {
@@ -20,5 +20,4 @@ export class TranslateComponent implements OnInit {
       category: ['', Validators.required],
     });
   }
-
 }
