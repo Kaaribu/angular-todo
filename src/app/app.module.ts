@@ -27,11 +27,6 @@ import { TranslateComponent } from './translate/translate.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
-
 
 @NgModule({
   declarations: [
@@ -44,15 +39,17 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatToolbarModule, MatIconModule,
     MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
-    MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule, HttpClientModule,
-    MatTableModule, MatPaginatorModule, MatSortModule, MatCheckboxModule, TranslateModule, HttpClientModule,
-    forRoot({
-      loader: {
-        provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
-    })
+    MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule, MatTableModule,
+    MatPaginatorModule, MatSortModule, MatCheckboxModule,
+     // ngx-translate and the loader module
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
 
 
   ],
@@ -60,3 +57,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+    return new TranslateHttpLoader(http);
+}

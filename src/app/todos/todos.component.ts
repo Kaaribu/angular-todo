@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ApiService} from "../services/api.service";
 import {DialogComponent} from "../dialog/dialog.component";
 import {TranslateComponent} from "../translate/translate.component";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-todos',
@@ -21,7 +22,11 @@ export class TodosComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @Input('isEditing') isEditingProps: boolean = true;
 
-  constructor(private dialog: MatDialog, private api: ApiService) {
+  constructor(private dialog: MatDialog, private api: ApiService,
+              private translate: TranslateService) {
+
+    translate.setDefaultLang('en');
+    translate.use('en');
   }
 
   ngOnInit(): void {
