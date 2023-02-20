@@ -2,23 +2,23 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>supervised_user_circle</mat-icon>
   </button>
-  <span>TO-DOs</span>
+  <span [translate]="'todo.todos.span'"></span>
   <span class="example-spacer"></span>
-  <button mat-fab extended color="primary" (click)="OpenDialog()">
+  <button [translate]="'todo.dialog.lbl-add'" mat-fab extended color="primary" (click)="OpenDialog()">
     <mat-icon>add</mat-icon>
-    New Task
+    {{'todo.todos.btn-add' | translate}}
   </button>
   <button style="margin-left: 10px" mat-fab extended color="warn"
     (click)="OpenTranslator()">
     <mat-icon>g_translate</mat-icon>
-    Translate
+    {{'todo.todos.btn-translate' | translate}}
   </button>
 </mat-toolbar>
 
 <div class="container">
   <div style="margin-top: 10px;">
     <mat-form-field>
-      <mat-label style="color: aquamarine">Filter</mat-label>
+      <mat-label [translate]="'todo.todos.filter'" style="color: aquamarine"></mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
     </mat-form-field>
 
@@ -27,37 +27,37 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="taskName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'todo.todos.name' | translate}} </th>
           <td mat-cell *matCellDef="let row"> {{row.taskName}} </td>
         </ng-container>
 
         <!-- Category Column -->
         <ng-container matColumnDef="category">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'todo.todos.category' | translate}} </th>
           <td mat-cell *matCellDef="let row"> {{row.category}} </td>
         </ng-container>
 
         <!-- Priority Column -->
         <ng-container matColumnDef="priority">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'todo.todos.priority' | translate}} </th>
           <td mat-cell *matCellDef="let row"> {{row.priority}} </td>
         </ng-container>
 
         <!-- Description -->
         <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'todo.todos.description' | translate}} </th>
           <td mat-cell *matCellDef="let row"> {{row.description}} </td>
         </ng-container>
 
         <!-- Date Column -->
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'todo.todos.date' | translate}} </th>
           <td mat-cell *matCellDef="let row"> {{row.date | date}} </td>
         </ng-container>
 
         <!-- Action -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit | Complete </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'todo.todos.actions' | translate}} </th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button (click)="editTask(row)" color="accent">
               <mat-icon>edit</mat-icon>

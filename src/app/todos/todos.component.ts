@@ -36,6 +36,7 @@ export class TodosComponent implements OnInit {
       {'label': 'German', value: 'de'},
     ];
 
+
     translate.setDefaultLang('en');
     translate.use('en');
   }
@@ -62,10 +63,11 @@ export class TodosComponent implements OnInit {
   }
 
    OpenTranslator() {
-    this.dialog.open(TranslateComponent, {
-      width: '30%',
-    });
+     this.dialog.open(TranslateComponent, {
+       width: '30%',
+     });
   }
+
   getAllTasks() {
     this.api.getTask().subscribe({
       next: (res) => {

@@ -16,7 +16,6 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 export class TranslateComponent implements OnInit {
 
   translateForm !: FormGroup;
-
   constructor(private formBuilder: FormBuilder,
                private translate: TranslateService) {
 
@@ -35,5 +34,6 @@ export class TranslateComponent implements OnInit {
 
   useLanguage(language: string) : void {
     this.translate.use(language);
+    localStorage.setItem('language', language)
   }
 }

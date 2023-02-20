@@ -1,4 +1,5 @@
 {
+	"todo.dialog.cancel-btn": "Stornieren",
 	"todo.dialog.cat-val": "Arbeit",
 	"todo.dialog.cat-val2": "Persönlichen",
 	"todo.dialog.cat-val3": "Schule",
@@ -11,6 +12,7 @@
 	"todo.dialog.lbl-task-ph": "Namen",
 	"todo.dialog.lbl-taskname": "Aufgabennname",
 	"todo.dialog.priority-lbl": "Aufgabenpriorität",
+	"todo.dialog.save-btn": "Sparen",
 	"todo.todos.actions": "Bearbeiten | Vollständig",
 	"todo.todos.btn-add": "Neue Aufgabe",
 	"todo.todos.btn-translate": "Übersetzen",
@@ -22,5 +24,7 @@
 	"todo.todos.priority": "Priorität",
 	"todo.todos.span": "Aufgaben",
 	"todo.translate.cancel-btn": "Stornieren",
+	"todo.translate.ok-btn": "OK",
+	"todo.translate.text": "Wählen Sie die Sprache für die Übersetzung:",
 	"todo.translate.title": "Text übersetzen"
 }

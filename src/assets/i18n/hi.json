@@ -1,4 +1,5 @@
 {
+	"todo.dialog.cancel-btn": "रद्द करना",
 	"todo.dialog.cat-val": "काम",
 	"todo.dialog.cat-val2": "निजी",
 	"todo.dialog.cat-val3": "स्कूल",
@@ -11,6 +12,7 @@
 	"todo.dialog.lbl-task-ph": "नाम",
 	"todo.dialog.lbl-taskname": "कार्य का नाम",
 	"todo.dialog.priority-lbl": "कार्य प्राथमिकता",
+	"todo.dialog.save-btn": "बचाना",
 	"todo.todos.actions": "संपादित करें | पूरा",
 	"todo.todos.btn-add": "नया कार्य",
 	"todo.todos.btn-translate": "अनुवाद करना",
@@ -22,5 +24,7 @@
 	"todo.todos.priority": "प्राथमिकता",
 	"todo.todos.span": "कार्य करने की सूचियां",
 	"todo.translate.cancel-btn": "रद्द करना",
+	"todo.translate.ok-btn": "ठीक",
+	"todo.translate.text": "अनुवाद के लिए भाषा चुनें:",
 	"todo.translate.title": "पाठ का अनुवाद करें"
 }

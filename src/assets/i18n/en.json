@@ -1,4 +1,5 @@
 {
+	"todo.dialog.cancel-btn": "Cancel",
 	"todo.dialog.cat-val": "Work",
 	"todo.dialog.cat-val2": "Personal",
 	"todo.dialog.cat-val3": "School",
@@ -11,6 +12,7 @@
 	"todo.dialog.lbl-task-ph": "Name",
 	"todo.dialog.lbl-taskname": "Task Name",
 	"todo.dialog.priority-lbl": "Task Priority",
+	"todo.dialog.save-btn": "Save",
 	"todo.todos.actions": "Edit | Complete",
 	"todo.todos.btn-add": "New Task",
 	"todo.todos.btn-translate": "Translate",
@@ -22,5 +24,7 @@
 	"todo.todos.priority": "Priority",
 	"todo.todos.span": "TO-DOs",
 	"todo.translate.cancel-btn": "Cancel",
+	"todo.translate.ok-btn": "Ok",
+	"todo.translate.text": "Choose language for translation:",
 	"todo.translate.title": "Translate Text"
 }

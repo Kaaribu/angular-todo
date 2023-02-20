@@ -1,4 +1,5 @@
 {
+	"todo.dialog.cancel-btn": "Annuler",
 	"todo.dialog.cat-val": "Travail",
 	"todo.dialog.cat-val2": "Personnel",
 	"todo.dialog.cat-val3": "École",
@@ -11,6 +12,7 @@
 	"todo.dialog.lbl-task-ph": "Nom",
 	"todo.dialog.lbl-taskname": "Nom de la tâche",
 	"todo.dialog.priority-lbl": "Priorité des tâches",
+	"todo.dialog.save-btn": "Sauvegarder",
 	"todo.todos.actions": "Modifier | Complet",
 	"todo.todos.btn-add": "Nouvelle tâche",
 	"todo.todos.btn-translate": "Traduire",
@@ -22,5 +24,7 @@
 	"todo.todos.priority": "Priorité",
 	"todo.todos.span": "Tâches",
 	"todo.translate.cancel-btn": "Annuler",
+	"todo.translate.ok-btn": "D'accord",
+	"todo.translate.text": "Choisissez la langue pour la traduction :",
 	"todo.translate.title": "Traduire le texte"
 }
