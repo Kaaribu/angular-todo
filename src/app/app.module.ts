@@ -27,6 +27,7 @@ import { TranslateComponent } from './translate/translate.component';
 import {TranslateLoader, TranslateModule, TranslateCompiler} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compil
     DialogComponent,
     TodosComponent,
     ServicesComponent,
-    TranslateComponent
+    TranslateComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatToolbarModule, MatIconModule,
