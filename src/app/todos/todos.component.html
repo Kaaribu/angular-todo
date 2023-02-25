@@ -2,8 +2,16 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>supervised_user_circle</mat-icon>
   </button>
-  <span [translate]="'todo.todos.span'"></span>
+  <span>{{ title }}</span>
   <span class="example-spacer"></span>
+  <button mat-button routerLink="/login" *ngIf="!isAuthenticated">
+      <mat-icon>power_settings_new</mat-icon>
+      Login
+    </button>
+    <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
   <button [translate]="'todo.dialog.lbl-add'" mat-fab extended color="primary" (click)="OpenDialog()">
     <mat-icon>add</mat-icon>
     {{'todo.todos.btn-add' | translate}}

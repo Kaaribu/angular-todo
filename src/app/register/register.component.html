@@ -3,30 +3,48 @@
     <mat-icon>supervised_user_circle</mat-icon>
   </button>
   <span>{{ title }}</span>
+  <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
   <span class="example-spacer"></span>
+  <button mat-button routerLink="/login" *ngIf="!isAuthenticated">
+      <mat-icon>power_settings_new</mat-icon>
+      Login
+    </button>
+    <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
 </mat-toolbar>
 
 <div class="container" style="margin-bottom: 30px">
   <mat-card>
   <mat-card-content>
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-      <h2>Log In</h2>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+      <h2 style="color: white">Register</h2>
       <mat-error *ngIf="!loginValid">
         The username and password were not recognized
       </mat-error>
       <mat-form-field>
-        <input matInput placeholder="Email" [(ngModel)]="username" name="username" required>
-        <mat-error>
-          Please provide a valid email address
+        <input matInput placeholder="Email" [(ngModel)]="username" name="email"
+               required
+               #emailInput="ngModel">
+        <mat-error *ngIf="emailInput.hasError('required')">
+          Please provide a valid email
+        </mat-error>
+        <mat-error *ngIf="!emailInput.hasError('required')">
+          Invalid email
         </mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+      <mat-form-field style="color: red" hintLabel="Should be at least 6 characters long.">
+        <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password"
+               required
+               minlength="6"
+               #pwdHint="ngModel">
+        <mat-hint style="color: red" align="end">{{ pwdHint.value?.length }} / 6</mat-hint>
         <mat-error>
           Please provide a valid password
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+      <button style="margin-top: 30px" type="submit" mat-raised-button color="primary" [disabled]="!registerForm.form.valid">Register</button>
     </form>
   </mat-card-content>
 </mat-card>

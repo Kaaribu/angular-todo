@@ -8,6 +8,9 @@ import {DialogComponent} from "../dialog/dialog.component";
 import {TranslateComponent} from "../translate/translate.component";
 import {TranslateService} from "@ngx-translate/core";
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import {filter, Subject, takeUntil} from "rxjs";
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 {
     let messageBoxContent = marker('messagebox.warning.text');
@@ -20,29 +23,50 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 })
 export class TodosComponent implements OnInit {
 
+  title: string = 'TO-DOs';
+
   displayedColumns: string[] = ['taskName', 'category', 'date', 'priority', 'description', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input('isEditing') isEditingProps: boolean = true;
+  private _destroySub$ = new Subject<void>();
+  private readonly returnUrl: string;
+  public isAuthenticated = false;
+   public logout(): void {
+    // todo
+  }
+
 
   constructor(private dialog: MatDialog, private api: ApiService,
-              private translate: TranslateService) {
-    this.stateOptions = [
-      {'label': 'Hindi', value: 'hi'},
-      {'label': 'English', value: 'en'},
-      {'label': 'French', value: 'fr'},
-      {'label': 'German', value: 'de'},
-    ];
+              private translate: TranslateService,
+              private _route: ActivatedRoute,
+    private _router: Router,
+    private _authService: AuthService
+  ){
+  this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+    {
+      this.stateOptions = [
+        {'label': 'Hindi', value: 'hi'},
+        {'label': 'English', value: 'en'},
+        {'label': 'French', value: 'fr'},
+        {'label': 'German', value: 'de'},
+      ];
+    }
 
 
     translate.setDefaultLang('en');
     translate.use('en');
   }
 
+
   ngOnInit(): void {
     this.getAllTasks();
+    this._authService.isAuthenticated$.pipe(
+      filter((isAuthenticated: boolean) => isAuthenticated),
+      takeUntil(this._destroySub$)
+    ).subscribe( _ => this._router.navigateByUrl(this.returnUrl));
   }
 
   onLanguageChange(item: any) {
@@ -66,6 +90,10 @@ export class TodosComponent implements OnInit {
      this.dialog.open(TranslateComponent, {
        width: '30%',
      });
+  }
+
+  public ngOnDestroy(): void {
+    this._destroySub$.next();
   }
 
   getAllTasks() {
