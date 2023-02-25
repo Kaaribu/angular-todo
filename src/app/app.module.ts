@@ -15,7 +15,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -28,6 +28,7 @@ import {TranslateLoader, TranslateModule, TranslateCompiler} from '@ngx-translat
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
 import { RegisterComponent } from './register/register.component';
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -44,21 +45,21 @@ import { RegisterComponent } from './register/register.component';
     MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule, MatTableModule,
     MatPaginatorModule, MatSortModule, MatCheckboxModule,
-     // ngx-translate and the loader module
-        HttpClientModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-             },
+    // ngx-translate and the loader module
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
 
-            // compiler configuration
-            compiler: {
-                provide: TranslateCompiler,
-                useClass: TranslateMessageFormatCompiler
-            }
-        })
+      // compiler configuration
+      compiler: {
+        provide: TranslateCompiler,
+        useClass: TranslateMessageFormatCompiler
+      }
+    }), MatCardModule, FormsModule
 
 
   ],
