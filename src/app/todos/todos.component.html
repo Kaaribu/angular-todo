@@ -4,14 +4,6 @@
   </button>
   <span>{{ title }}</span>
   <span class="example-spacer"></span>
-  <button mat-button routerLink="/login" *ngIf="!isAuthenticated">
-      <mat-icon>power_settings_new</mat-icon>
-      Login
-    </button>
-    <button mat-button *ngIf="isAuthenticated" (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
-      Logout
-    </button>
   <button [translate]="'todo.dialog.lbl-add'" mat-fab extended color="primary" (click)="OpenDialog()">
     <mat-icon>add</mat-icon>
     {{'todo.todos.btn-add' | translate}}
@@ -21,6 +13,14 @@
     <mat-icon>g_translate</mat-icon>
     {{'todo.todos.btn-translate' | translate}}
   </button>
+   <button mat-fab extended color="accent" style="margin-left: 10px" routerLink="/login" *ngIf="!isAuthenticated">
+      <mat-icon>power_settings_new</mat-icon>
+      Login
+    </button>
+    <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
 </mat-toolbar>
 
 <div class="container">

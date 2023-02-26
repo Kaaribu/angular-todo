@@ -27,9 +27,9 @@ import { TranslateComponent } from './translate/translate.component';
 import {TranslateLoader, TranslateModule, TranslateCompiler} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './auth/register/register.component';
 import {MatCardModule} from "@angular/material/card";
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 @NgModule({
