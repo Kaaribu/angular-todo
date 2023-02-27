@@ -30,6 +30,10 @@ import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compil
 import { RegisterComponent } from './auth/register/register.component';
 import {MatCardModule} from "@angular/material/card";
 import { LoginComponent } from './auth/login/login.component';
+import {AuthService} from "./auth/auth.service";
+import { AngularFireModule} from "@angular/fire/compat";
+import { AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import { environment} from "./environments/environment";
 
 
 @NgModule({
@@ -46,7 +50,8 @@ import { LoginComponent } from './auth/login/login.component';
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatToolbarModule, MatIconModule,
     MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule, MatTableModule,
-    MatPaginatorModule, MatSortModule, MatCheckboxModule,
+    MatPaginatorModule, MatSortModule, MatCheckboxModule, AngularFireModule.initializeApp(environment.firebase,
+      'angular-todo'), AngularFirestoreModule,
     // ngx-translate and the loader module
     HttpClientModule,
     TranslateModule.forRoot({
@@ -65,7 +70,7 @@ import { LoginComponent } from './auth/login/login.component';
 
 
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

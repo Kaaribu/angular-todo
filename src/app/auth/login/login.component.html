@@ -3,13 +3,13 @@
     <mat-icon>supervised_user_circle</mat-icon>
   </button>
   <span>{{ title }}</span>
-  <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+  <button mat-button routerLink="/" *ngIf="!isAuth"><mat-icon>home</mat-icon></button>
   <span class="example-spacer"></span>
-  <button mat-fab extended color="accent" routerLink="/login" *ngIf="!isAuthenticated">
+  <button mat-fab extended color="accent" routerLink="/login" *ngIf="!isAuth">
       <mat-icon>power_settings_new</mat-icon>
       Login
     </button>
-    <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+    <button mat-button *ngIf="isAuth" (click)="onLogout()">
       <mat-icon>exit_to_app</mat-icon>
       Logout
     </button>
@@ -40,8 +40,8 @@
       </mat-form-field>
       <button style="margin-top: 30px" type="submit" mat-raised-button color="primary" [disabled]="!registerForm.form.valid">Login
       </button>
-      <p style="margin-top:30px; color: white; font-size:medium">Click <a style="color: aqua" href="/register">here</a>
-      to register</p>
+      <p style="margin-top:30px; color: white; font-size:medium">
+        No account? Click <a style="color: aqua" href="/register">here</a> to register. </p>
     </form>
   </mat-card-content>
 </mat-card>

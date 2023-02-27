@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
@@ -8,9 +8,10 @@ import {DialogComponent} from "../dialog/dialog.component";
 import {TranslateComponent} from "../translate/translate.component";
 import {TranslateService} from "@ngx-translate/core";
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import {filter, Subject, takeUntil} from "rxjs";
+import {filter, Observable, Subject, Subscription, takeUntil} from "rxjs";
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
+import { AngularFirestore} from "@angular/fire/compat/firestore";
 
 {
     let messageBoxContent = marker('messagebox.warning.text');
@@ -21,7 +22,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss']
 })
-export class TodosComponent implements OnInit {
+export class TodosComponent implements OnInit, OnDestroy {
 
   title: string = 'TO-DOs';
 
@@ -34,16 +35,18 @@ export class TodosComponent implements OnInit {
   private _destroySub$ = new Subject<void>();
   private readonly returnUrl: string;
   public isAuthenticated = false;
-   public logout(): void {
-    // todo
-  }
+
+
+  isAuth = false;
+  authSubscription: Subscription | undefined;
 
 
   constructor(private dialog: MatDialog, private api: ApiService,
               private translate: TranslateService,
               private _route: ActivatedRoute,
-    private _router: Router,
-    private _authService: AuthService
+              private _router: Router,
+              private _authService: AuthService,
+              private firestore: AngularFirestore
   ){
   this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
     {
@@ -60,13 +63,11 @@ export class TodosComponent implements OnInit {
     translate.use('en');
   }
 
-
   ngOnInit(): void {
     this.getAllTasks();
-    this._authService.isAuthenticated$.pipe(
-      filter((isAuthenticated: boolean) => isAuthenticated),
-      takeUntil(this._destroySub$)
-    ).subscribe( _ => this._router.navigateByUrl(this.returnUrl));
+    this.authSubscription = this._authService._authSub$.subscribe( authStatus => {
+      this.isAuth = authStatus;
+    } );
   }
 
   onLanguageChange(item: any) {
@@ -92,8 +93,13 @@ export class TodosComponent implements OnInit {
      });
   }
 
-  public ngOnDestroy(): void {
-    this._destroySub$.next();
+  onLogout() {
+    this._authService.logout();
+  }
+
+  public ngOnDestroy() {
+    // @ts-ignore
+    this.authSubscription.unsubscribe();
   }
 
   getAllTasks() {

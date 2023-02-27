@@ -3,6 +3,10 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../services/api.service";
 import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { HttpClient} from "@angular/common/http";
+import { AngularFirestore} from "@angular/fire/compat/firestore";
+import {Observable} from "rxjs";
+import {Tasks} from "../todos/models/todos.model";
 
 {
     let messageBoxContent = marker('messagebox.warning.text');
@@ -14,6 +18,8 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
+  // @ts-ignore
+  tasks = this.store.collection('tasks').valueChanges({ idField: 'id' }) as Observable<Tasks[]>;
 
   priorityList: string[] = ["Urgent", "Moderate", "Normal"];
   todoForm !: FormGroup;
@@ -21,7 +27,9 @@ export class DialogComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private api: ApiService,
               private dialogRef: MatDialogRef<DialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public editData: any) {
+              @Inject(MAT_DIALOG_DATA) public editData: any,
+              private http: HttpClient,
+              private store: AngularFirestore) {
   }
 
   ngOnInit(): void {
@@ -70,6 +78,7 @@ export class DialogComponent implements OnInit {
       }
     }
   }
+
 }
 
 

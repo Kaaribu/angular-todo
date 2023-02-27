@@ -4,11 +4,11 @@
   </button>
   <span>{{ title }}</span>
   <span class="example-spacer"></span>
-  <button mat-fab extended color="accent" routerLink="/login" *ngIf="!isAuthenticated">
+  <button mat-fab extended color="accent" routerLink="/login" *ngIf="!isAuth">
       <mat-icon>power_settings_new</mat-icon>
       Login
     </button>
-    <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+    <button mat-button *ngIf="isAuth" (click)="onLogout()">
       <mat-icon>exit_to_app</mat-icon>
       Logout
     </button>

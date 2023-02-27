@@ -13,11 +13,11 @@
     <mat-icon>g_translate</mat-icon>
     {{'todo.todos.btn-translate' | translate}}
   </button>
-   <button mat-fab extended color="accent" style="margin-left: 10px" routerLink="/login" *ngIf="!isAuthenticated">
+   <button mat-fab extended color="accent" style="margin-left: 10px" routerLink="/login" *ngIf="!isAuth">
       <mat-icon>power_settings_new</mat-icon>
       Login
     </button>
-    <button mat-button *ngIf="isAuthenticated" (click)="logout()">
+    <button mat-fab extended color="accent" style="margin-left: 10px" *ngIf="isAuth" (click)="onLogout()">
       <mat-icon>exit_to_app</mat-icon>
       Logout
     </button>

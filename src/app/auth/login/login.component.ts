@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
-import {filter, Subject, takeUntil} from "rxjs";
+import {filter, Subject, Subscription, takeUntil} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../../auth.service";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   title: string = 'Login'
 
   loginForm !: FormGroup;
@@ -24,6 +24,9 @@ export class LoginComponent implements OnInit {
     // todo
   }
 
+  isAuth = false;
+  authSubscription: Subscription | undefined;
+
   constructor(
     private formBuilder: FormBuilder,
     private _route: ActivatedRoute,
@@ -33,22 +36,31 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
   }
 
+
   public ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
     })
-    this._authService.isAuthenticated$.pipe(
-      filter((isAuthenticated: boolean) => isAuthenticated),
-      takeUntil(this._destroySub$)
-    ).subscribe( _ => this._router.navigateByUrl(this.returnUrl));
+    this.authSubscription = this._authService._authSub$.subscribe( authStatus => {
+      this.isAuth = authStatus;
+    } );
   }
 
-  public ngOnDestroy(): void {
-    this._destroySub$.next();
+  onLogout() {
+    this._authService.logout()
+  }
+
+
+  public ngOnDestroy() {
+    // @ts-ignore
+    this.authSubscription.unsubscribe();
   }
 
   public onSubmit(loginForm: FormGroup) {
-    console.log(loginForm)
+    this._authService.login({
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    });
   }
 }
