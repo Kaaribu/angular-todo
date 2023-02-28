@@ -34,6 +34,8 @@ import {AuthService} from "./auth/auth.service";
 import { AngularFireModule} from "@angular/fire/compat";
 import { AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { environment} from "./environments/environment";
+import { AngularFireAuthModule} from "@angular/fire/compat/auth";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -51,7 +53,7 @@ import { environment} from "./environments/environment";
     MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule, MatTableModule,
     MatPaginatorModule, MatSortModule, MatCheckboxModule, AngularFireModule.initializeApp(environment.firebase,
-      'angular-todo'), AngularFirestoreModule,
+      'angular-todo'), AngularFirestoreModule, AngularFireAuthModule, MatSnackBarModule,
     // ngx-translate and the loader module
     HttpClientModule,
     TranslateModule.forRoot({

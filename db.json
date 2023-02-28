@@ -2,9 +2,9 @@
   "taskList": [
     {
       "taskName": "Repairs",
-      "category": "Work",
-      "priority": "Moderate",
-      "description": "Repair all workstations",
+      "category": "School",
+      "priority": "Urgent",
+      "description": "Repair all workstations!!!!",
       "date": "2023-01-31T22:00:00.000Z",
       "id": 1
     },

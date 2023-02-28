@@ -19,10 +19,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private _destroySub$ = new Subject<void>();
   private readonly returnUrl: string;
-  public isAuthenticated = false;
-  public logout(): void {
-    // todo
-  }
 
   isAuth = false;
   authSubscription: Subscription | undefined;

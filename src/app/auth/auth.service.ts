@@ -3,21 +3,32 @@ import { BehaviorSubject, catchError, from, map, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import {UserModel} from "./models/user.model";
 import {AuthDataModel} from "./models/auth-data.model";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements OnDestroy {
 
-  // @ts-ignore
-  private user: UserModel;
+  private user!: UserModel;
+
+  constructor(private _router: Router,
+              private fireAuth: AngularFireAuth,
+              private snackbar: MatSnackBar) {
+  }
 
   registerUser(authData: AuthDataModel) {
-    this.user = {
-      email: authData.email,
-      userId: Math.round(Math.random() * 10000).toString()
-    };
-    this.authSuccess();
+    this.fireAuth.createUserWithEmailAndPassword(authData.email, authData.password).
+    then((res: any) => {
+      this.authSuccess();
+    })
+      .catch((err: any) => {
+        // @ts-ignore
+        this.snackbar.open(err.message, null,{
+          duration: 3000
+        })
+      });
   }
 
   login(authData: AuthDataModel) {
@@ -47,9 +58,6 @@ export class AuthService implements OnDestroy {
 
   public get isAuthenticated$(): Observable<boolean> {
     return this._authSub$.asObservable();
-  }
-
-  constructor(private _router: Router) {
   }
 
   public ngOnDestroy(): void {

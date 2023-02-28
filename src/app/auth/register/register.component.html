@@ -25,7 +25,8 @@
       <mat-form-field>
         <input matInput placeholder="Email" [(ngModel)]="username" name="email"
                required
-               #emailInput="ngModel">
+               #emailInput="ngModel"
+               #email>
         <mat-error *ngIf="emailInput.hasError('required')">
           Please provide a valid email
         </mat-error>
@@ -37,13 +38,15 @@
         <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password"
                required
                minlength="6"
-               #pwdHint="ngModel">
+               #pwdHint="ngModel"
+               #pwd>
         <mat-hint style="color: red" align="end">{{ pwdHint.value?.length }} / 6</mat-hint>
         <mat-error>
           Please provide a valid password
         </mat-error>
       </mat-form-field>
-      <button style="margin-top: 30px" type="submit" mat-raised-button color="primary" [disabled]="!registerForm.form.valid">Register</button>
+      <button style="margin-top: 30px" type="submit" mat-raised-button color="primary"
+              [disabled]="!registerForm.form.valid">Register</button>
     </form>
   </mat-card-content>
 </mat-card>

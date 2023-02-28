@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
   ) {
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
   }
@@ -46,7 +46,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   onLogout() {
     this._authService.logout()
   }
-
 
   public ngOnDestroy() {
     // @ts-ignore

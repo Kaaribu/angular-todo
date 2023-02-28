@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
@@ -8,10 +8,7 @@ import {DialogComponent} from "../dialog/dialog.component";
 import {TranslateComponent} from "../translate/translate.component";
 import {TranslateService} from "@ngx-translate/core";
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import {filter, Observable, Subject, Subscription, takeUntil} from "rxjs";
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
-import { AngularFirestore} from "@angular/fire/compat/firestore";
+import {AuthService} from "../auth/auth.service";
 
 {
     let messageBoxContent = marker('messagebox.warning.text');
@@ -22,9 +19,8 @@ import { AngularFirestore} from "@angular/fire/compat/firestore";
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss']
 })
-export class TodosComponent implements OnInit, OnDestroy {
-
-  title: string = 'TO-DOs';
+export class TodosComponent implements OnInit {
+  title: string = 'TO-DOs'
 
   displayedColumns: string[] = ['taskName', 'category', 'date', 'priority', 'description', 'action'];
   dataSource!: MatTableDataSource<any>;
@@ -32,42 +28,31 @@ export class TodosComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input('isEditing') isEditingProps: boolean = true;
-  private _destroySub$ = new Subject<void>();
-  private readonly returnUrl: string;
-  public isAuthenticated = false;
-
-
-  isAuth = false;
-  authSubscription: Subscription | undefined;
-
 
   constructor(private dialog: MatDialog, private api: ApiService,
               private translate: TranslateService,
-              private _route: ActivatedRoute,
-              private _router: Router,
-              private _authService: AuthService,
-              private firestore: AngularFirestore
-  ){
-  this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
-    {
-      this.stateOptions = [
-        {'label': 'Hindi', value: 'hi'},
-        {'label': 'English', value: 'en'},
-        {'label': 'French', value: 'fr'},
-        {'label': 'German', value: 'de'},
-      ];
-    }
+              private _authService: AuthService) {
+    this.stateOptions = [
+      {'label': 'Hindi', value: 'hi'},
+      {'label': 'English', value: 'en'},
+      {'label': 'French', value: 'fr'},
+      {'label': 'German', value: 'de'},
+    ];
 
 
     translate.setDefaultLang('en');
     translate.use('en');
   }
 
+  isAuth = false;
+
+  onLogout() {
+    this._authService.logout();
+  }
+
+
   ngOnInit(): void {
     this.getAllTasks();
-    this.authSubscription = this._authService._authSub$.subscribe( authStatus => {
-      this.isAuth = authStatus;
-    } );
   }
 
   onLanguageChange(item: any) {
@@ -91,15 +76,6 @@ export class TodosComponent implements OnInit, OnDestroy {
      this.dialog.open(TranslateComponent, {
        width: '30%',
      });
-  }
-
-  onLogout() {
-    this._authService.logout();
-  }
-
-  public ngOnDestroy() {
-    // @ts-ignore
-    this.authSubscription.unsubscribe();
   }
 
   getAllTasks() {
@@ -147,3 +123,4 @@ export class TodosComponent implements OnInit, OnDestroy {
     }
   }
 }
+
