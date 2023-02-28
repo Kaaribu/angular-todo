@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +36,8 @@ import { AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { environment} from "./environments/environment";
 import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { StoreModule} from "@ngrx/store";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -54,6 +56,10 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule, MatTableModule,
     MatPaginatorModule, MatSortModule, MatCheckboxModule, AngularFireModule.initializeApp(environment.firebase,
       'angular-todo'), AngularFirestoreModule, AngularFireAuthModule, MatSnackBarModule,
+    StoreModule.forRoot([]), StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
     // ngx-translate and the loader module
     HttpClientModule,
     TranslateModule.forRoot({
@@ -68,7 +74,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
         provide: TranslateCompiler,
         useClass: TranslateMessageFormatCompiler
       }
-    }), MatCardModule, FormsModule
+    }), MatCardModule, FormsModule, StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
 
 
   ],
