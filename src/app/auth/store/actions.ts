@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import {ActionTypes} from "./actionTypes";
-import {RegisterRequestInteface} from "../models/registerRequest.inteface";
+import { TranslateRequestInterface } from '../models/translateRequest.interface';
 
-export const registerAction = createAction(
-  ActionTypes.REGISTER,
-  props<{ request: RegisterRequestInteface }>()
+export const translateAction = createAction(
+  ActionTypes.TRANSLATE,
+  props<{ request: TranslateRequestInterface }>()
 );

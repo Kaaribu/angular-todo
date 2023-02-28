@@ -27,7 +27,6 @@ import { TranslateComponent } from './translate/translate.component';
 import {TranslateLoader, TranslateModule, TranslateCompiler} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
-import { RegisterComponent } from './auth/register/register.component';
 import {MatCardModule} from "@angular/material/card";
 import { LoginComponent } from './auth/login/login.component';
 import {AuthService} from "./auth/auth.service";
@@ -38,7 +37,7 @@ import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { StoreModule} from "@ngrx/store";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { RegisterComponent} from "./auth/register/register.component";
 
 @NgModule({
   declarations: [
@@ -47,8 +46,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     TodosComponent,
     ServicesComponent,
     TranslateComponent,
-    RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
+
   ],
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatToolbarModule, MatIconModule,
@@ -56,7 +56,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule, MatTableModule,
     MatPaginatorModule, MatSortModule, MatCheckboxModule, AngularFireModule.initializeApp(environment.firebase,
       'angular-todo'), AngularFirestoreModule, AngularFireAuthModule, MatSnackBarModule,
-    StoreModule.forRoot([]), StoreDevtoolsModule.instrument({
+    StoreModule.forRoot({}), StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),

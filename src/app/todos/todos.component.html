@@ -19,7 +19,7 @@
     </button>
     <button mat-fab extended color="accent" style="margin-left: 10px" *ngIf="!isAuth" (click)="onLogout()">
       <mat-icon>exit_to_app</mat-icon>
-      Logout
+      {{ 'todo.todos.logout' | translate }}
     </button>
 </mat-toolbar>
 

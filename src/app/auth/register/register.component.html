@@ -45,7 +45,7 @@
           Please provide a valid password
         </mat-error>
       </mat-form-field>
-      <button style="margin-top: 30px" type="submit" mat-raised-button color="primary"
+      <button style="margin-top: 30px" type="submit" (click)="onSubmit(registerForm) " mat-raised-button color="primary"
               [disabled]="!registerForm.form.valid">Register</button>
     </form>
   </mat-card-content>

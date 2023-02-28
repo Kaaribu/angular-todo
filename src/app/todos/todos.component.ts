@@ -7,12 +7,9 @@ import {ApiService} from "../services/api.service";
 import {DialogComponent} from "../dialog/dialog.component";
 import {TranslateComponent} from "../translate/translate.component";
 import {TranslateService} from "@ngx-translate/core";
-import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import {AuthService} from "../auth/auth.service";
+import {Observable} from "rxjs";
 
-{
-    let messageBoxContent = marker('messagebox.warning.text');
-}
 
 @Component({
   selector: 'app-todos',
@@ -28,6 +25,8 @@ export class TodosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @Input('isEditing') isEditingProps: boolean = true;
+  isTranslating$: Observable<boolean>
+  private form;
 
   constructor(private dialog: MatDialog, private api: ApiService,
               private translate: TranslateService,
@@ -39,7 +38,6 @@ export class TodosComponent implements OnInit {
       {'label': 'German', value: 'de'},
     ];
 
-
     translate.setDefaultLang('en');
     translate.use('en');
   }
@@ -49,7 +47,6 @@ export class TodosComponent implements OnInit {
   onLogout() {
     this._authService.logout();
   }
-
 
   ngOnInit(): void {
     this.getAllTasks();
@@ -72,7 +69,7 @@ export class TodosComponent implements OnInit {
     });
   }
 
-   OpenTranslator() {
+   OpenTranslator(): void {
      this.dialog.open(TranslateComponent, {
        width: '30%',
      });

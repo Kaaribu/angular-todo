@@ -33,6 +33,7 @@
     </div>
   <div mat-dialog-actions [align]="'end'">
     <button mat-fab extended color="warn" mat-dialog-close="">{{'todo.dialog.cancel-btn' | translate}}</button>
-    <button mat-fab extended color="primary" (click)="addTask()">{{actionBtn}}</button>
+    <button mat-fab extended color="primary" (click)="addTask()">
+      {{ 'todo.dialog.save-btn' | translate }}</button>
 </div>
 

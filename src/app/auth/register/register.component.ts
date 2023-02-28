@@ -4,7 +4,6 @@ import { AuthService } from '../auth.service';
 import {filter, Subject, Subscription, take, takeUntil} from 'rxjs';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import { Store } from '@ngrx/store';
-import {registerAction} from "../store/actions";
 
 
 @Component({
@@ -57,7 +56,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public onSubmit(registerForm: NgForm) {
     console.log('submit', this.registerForm.value, this.registerForm.valid)
-    this.store.dispatch(registerAction(this.registerForm.value));
     this._authService.registerUser({
       email: registerForm.value.email,
       password: registerForm.value.password

@@ -18,6 +18,7 @@
 	"todo.todos.btn-translate": "Traduire",
 	"todo.todos.category": "CATÉGORIE",
 	"todo.todos.date": "Date",
+  "todo.todos.logout": "Se déconnecter",
 	"todo.todos.description": "La description",
 	"todo.todos.filter": "Filtre",
 	"todo.todos.name": "Nom",
