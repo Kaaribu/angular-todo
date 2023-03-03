@@ -29,7 +29,7 @@ Start the application by running `ng serve`
 
 ## Deployed to Google Cloud
 
- [App link](https://kaaribu-todo.web.app)
+ [App link](https://karabo-todo.web.app)
 
 ## Testing
 
