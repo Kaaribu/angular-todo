@@ -5,7 +5,7 @@ This is a simple To-Do List application built using TypeScript, Angular, Materia
 
 Clone the repository from GitHub;
 
-`git clone https://github.com/<your-username>/todo-list-app.git
+`git clone https://github.com/Kaaribu/angular-todo
 
 ### Install the dependencies:
 
@@ -27,16 +27,9 @@ Start the application by running `ng serve`
 6. As an admin, you can access the admin UI by navigating to `http://localhost:4200/admin` in your browser.
 7.  Click on a user to view their usage history and whether they have clicked the "Translate" button.
 
-## Deployment to Google Cloud
+## Deployed to Google Cloud
 
-To deploy the application to Google Cloud, follow the steps below:
-
-1. Create a new project on Google Cloud and enable the Cloud SQL Admin API, Cloud Build API, and Cloud Run API.
-2. Create a new Cloud SQL instance and database.
-3. Create a new Cloud Storage bucket to store the Cloud Build configuration files.
-4. Update the cloudbuild.yaml file with the appropriate variables for your project.
-5. Create a new trigger in Cloud Build to automatically deploy changes to Cloud Run when changes are pushed to the master branch of the repository.
-6. Push the changes to the master branch of the repository.
+ [App link](https://kaaribu-todo.web.app)
 
 ## Testing
 
