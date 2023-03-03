@@ -1,27 +1,55 @@
-# AngularTodo
+# To-Do List App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
+This is a simple To-Do List application built using TypeScript, Angular, Material UI, and Postgres. The app allows users to create a to-do list and translate the list items into 1 other language using Google/MS AI translation.
+## Installation
 
-## Development server
+Clone the repository from GitHub;
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+`git clone https://github.com/Kaaribu/angular-todo
 
-## Code scaffolding
+### Install the dependencies:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`cd todo-list-app` 
+`npm install` 
 
-## Build
+Run the json-server for the database:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`json-server --watch db.json`
 
-## Running unit tests
+Start the application by running `ng serve`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage
+1. Navigate to `http://localhost:4200` in your browser to use the application.
+2. Signup or login to the application.
+3. Add items to the to-do list.
+4. Click the "Translate" button to translate the items into 1 other language.
+5. Logout from the application.
+6. As an admin, you can access the admin UI by navigating to `http://localhost:4200/admin` in your browser.
+7.  Click on a user to view their usage history and whether they have clicked the "Translate" button.
 
-## Running end-to-end tests
+## Deployed to Google Cloud
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+ [App link](https://kaaribu-todo.web.app)
 
-## Further help
+## Testing
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To run automated tests for the application, run the following command:
+
+`npm test`
+
+## Changelog
+-  Implemented ngrx store for the translate button
+- Added GitHub Actions for CI/CD on code push to master
+- Implemented UI testing 
+
+
+## Built With
+Angular 14, Material UI, Firebase, Google Cloud
+
+## Credits
+
+- Author: Karabo Masalesa - [My Github link](https://github.com/Kaaribu)
+
+## Repository
+
+https://github.com/Kaaribu/angular-todo
