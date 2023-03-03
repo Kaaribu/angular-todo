@@ -1,0 +1,50 @@
+<mat-toolbar color="accent" xmlns="http://www.w3.org/1999/html">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>supervised_user_circle</mat-icon>
+  </button>
+  <span>{{ title }}</span>
+  <button mat-button routerLink="/" *ngIf="!isAuth"><mat-icon>home</mat-icon></button>
+  <span class="example-spacer"></span>
+  <button mat-fab extended color="accent" routerLink="/login" *ngIf="!isAuth">
+      <mat-icon>power_settings_new</mat-icon>
+      Login
+    </button>
+    <button mat-fab extended color="accent" *ngIf="isAuth" (click)="onLogout()">
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
+</mat-toolbar>
+
+<div class="container" style="margin-bottom: 30px">
+  <mat-card>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2 style="color: white">Log in</h2>
+      <mat-error *ngIf="!loginValid">
+        The username and password were not recognized
+      </mat-error>
+      <mat-form-field>
+        <input matInput type="email" placeholder="Email"
+               formControlName="email"
+               required>
+        <mat-error>
+          Please provide a valid email
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="color: red">
+        <input matInput type="password" placeholder="Password"
+               formControlName="password"
+               required>
+        <mat-error>
+          Please provide a valid password
+        </mat-error>
+      </mat-form-field>
+      <button style="margin-top: 30px" type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Login
+      </button>
+      <p style="margin-top:30px; color: white; font-size:medium">
+        No account? Click <a style="color: aqua" href="/register">here</a> to register. </p>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+</div>
