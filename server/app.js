@@ -1,6 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -9,6 +12,14 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods',
     'GET, POST, PUT, PATCH, DELETE, OPTIONS')
   next()
+});
+
+app.post('/api/taskList', (req, res, next) => {
+  const task = req.body;
+  console.log(task);
+  res.status(201).json({
+    message: 'Task added successfully!'
+  });
 });
 
 app.use('/api/taskList', (req, res, next) => {
